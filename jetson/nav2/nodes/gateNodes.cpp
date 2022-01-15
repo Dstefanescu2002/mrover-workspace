@@ -164,6 +164,8 @@ namespace gateNodes{
                 // we see the targets but they are not gate IDs
                 return BT::NodeStatus::FAILURE;
         }
+        return BT::NodeStatus::FAILURE; //double check logic
+        // warning: control reaches end of non-void function [-Wreturn-type]
     }
 
     BT::NodeStatus genSecondPostSearchPattern(){
