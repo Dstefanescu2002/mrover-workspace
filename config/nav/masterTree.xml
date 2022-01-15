@@ -1,103 +1,140 @@
 <root main_tree_to_execute = "MainTree" >
     <BehaviorTree ID="MainTree">
-        <Fallback name="AutonStateSelector">
+        <Fallback>
             <IsOff/>
             <!--Auton On Tree-->
             <Sequence>
                 <!--Drive Tree-->
-                <Selector>
-                    <AtCurrentWaypoint name="atCurrentWaypoint"/>
-                    <DriveToPoint name="driveToPoint"/>
-                </Selector>
+                <Fallback>
+                    <AtCurrentWaypoint/>
+                    <DriveToPoint/>
+                </Fallback>
                 <!--Waypoint Decision Tree (Manages the waypoint course)-->
-                <Selector>
+                <Fallback>
                     <!-- Search Point -->
                     <Sequence>
-                        <SearchPoint name="isSearchPoint"/>
-                        <!--Serch Point Tree-->
-                        <Selector>
+                        <IsSearchPoint/>
+                        <!--Search Point Tree-->
+                        <Fallback>
                             <!--Know where the gate is?-->
                             <Sequence>
-                                <IsFirstGatePostLocKnown name="isFirstGatePostLocKnown"/>
+                                <IsFirstGatePostLocKnown/>
                                 <Inverter>
                                     <Sequence>
-                                        <Target name="hasTarget"/>
-                                        <PopulateSecondTarget name="popualateSecondTarget"/>
-                                        <GenerateGateTraversalPath name="genGateTraversalPath"/>
+                                        <HasTarget2/>
+                                        <PopulateSecondTarget/>
+                                        <GenGateTraversalPath/>
                                     </Sequence>
                                 </Inverter>
-                                <Selector>
-                                    <AtCurrentWaypoint name="atCurrentWaypoint"/>
-                                    <SpinGimbal name="spinGimbal"/>
-                                    <PopCourse name="popCourse"/>
-                                </Selector>
+                                <Sequence>
+                                    <AtCurrentWaypoint/>
+                                    <!-- gimbal sub-tree for target 2-->
+                                    <Fallback>
+                                        <SpinGimbal/>
+                                        <Sequence>
+                                            <HasTarget2/>
+                                            <ResetGimbalIndex/>
+                                            <PopulateSecondTarget/>
+                                            <GenGateTraversalPath/>
+                                        </Sequence>
+                                    </Fallback>
+                                    <PopCourse/>
+                                </Sequence>
                             </Sequence>
-                            
+
                             <!--Sees a target (for first time)-->
                             <Sequence>
-                                <Target name="hasTarget"/>
-                                <PopulateFirstTarget name="popualateFirstTarget"/>
-                                <PutTargetAtFrontofCourse name="putTargetAtFrontOfCourse"/>
+                                <HasTarget1/>
+                                <PopulateFirstTarget/>
+                                <PutTargetAtFrontOfCourse/>
                             </Sequence>
 
                             <!--Reached Search Point,  refresh course-->
                             <Sequence>
-                                <AtCurrentWaypoint name="atCurrentWaypoint"/>
+                                <AtCurrentWaypoint/>
                                 <!--Repeator Drop Goes here if repeator needs to be added-->
-                                <SpinGimbal name="spinGimbal"/>
-                                <PopCourse name="popCourse"/>
+                                <!-- gimbal sub-tree for target 1 -->
+                                <Fallback>
+                                    <SpinGimbal/>
+                                        <Sequence>
+                                            <HasTarget2/>
+                                            <ResetGimbalIndex/>
+                                            <PopulateFirstTarget/>
+                                            <PutTargetAtFrontOfCourse/>
+                                        </Sequence>
+                                </Fallback>
+                                <PopCourse/>
+
                             </Sequence>
 
                             <!--Repeator Drop Point Detection Goes here-->
-                        </Selector>
+                        </Fallback>
                     </Sequence>
                     <!--Destination Point-->
                     <Sequence>
-                        <DestinationPoint name="isDestinationPoint"/>
+                        <IsDestinationPoint/>
                         <Sequence>
-                            <AtCurrentWaypoint name="atCurrentWaypoint"/>
-                            <GenSearchPoints name="generateSearchPoints"/>
+                            <AtCurrentWaypoint/>
+                            <GenSearchPoints/>
                         </Sequence>
                     </Sequence>
                     <!--Gate Traversal Point-->
                     <Sequence>
-                        <GateTraversalPoint name="isGateTraversalPoint"/>
+                        <IsGateTraversalPoint/>
                         <!-- GATE TRAVERSAL TREE -->
                         <Sequence>
-                            <AtCurrentWaypoint name="atCurrentWaypoint"/>
-                            <Selector>
+                            <AtCurrentWaypoint/>
+                            <Fallback>
                                 <Sequence>
                                     <Inverter>
-                                        <hasGateTraversalPoints name="hasGateTraversalPoints"/><!--"no more gate traversal points"-->
+                                        <HasGateTraversalPoints/><!--"no more gate traversal points"-->
                                     </Inverter>
-                                    <verifyGateTraversal name="verifyGateTraversal"/>
+                                    <Sequence> <!-- TODO gimbal here -->
+                                        <Fallback>
+                                            <SpinGimbal/>
+                                            <ForceFailure>
+                                                <TurnOff/>
+                                            </ForceFailure>
+                                        </Fallback>
+                                        <Sequence>
+                                            <HasTarget1/>
+                                            <HasTarget2/>
+                                            <Fallback>
+                                                <VerifyGateTraversal/>
+                                                <ForceFailure>
+                                                    <TurnOff/>
+                                                </ForceFailure>
+                                            </Fallback>
+                                        </Sequence>
+                                    </Sequence>
+                                    <Fallback>
+                                        <GenGateTraversalPath/>
+                                        <TurnOff/>
+                                    </Fallback>
                                 </Sequence>
                                 <Sequence>
-                                    <Inverter>
-                                        <hasGateTraversalPoints name="hasGateTraversalPoints"/><!--"no more gate traversal points"-->
-                                    </Inverter>
-                                    <PopCourse name="popCourse"/>
+                                    <HasGateTraversalPoints/>
+                                    <PopCourse/>
                                 </Sequence>
-                            </Selector>
+                            </Fallback>
                         </Sequence>
                     </Sequence>
                     <!--Target Approach Point-->
                     <Sequence>
-                        <TargetApproachPoint name="isTargetApproachPoint"/>
+                        <IsTargetApproachPoint/>
                         <!--Target Approach Tree-->
                         <Sequence>
-                            <AtCurrentWaypoint name="atCurrentWaypoint"/>
-                            <Selector>
+                            <AtCurrentWaypoint/>
+                            <Fallback>
                                 <Sequence>
-                                    <ARTagLeg name="isARTagLeg"/>
-                                    <ClearCourse name="clearCourse"/>
+                                    <IsARTagLeg/>
+                                    <ClearCourse/>
                                 </Sequence>
-                                <GenSecondPostSearchPattern name="genSecondPostSearchPattern"/>
-                            </Selector>
+                                <GenSecondPostSearchPattern/>
+                            </Fallback>
                         </Sequence>
                     </Sequence>
-                </Selector>
-
+                </Fallback>
             </Sequence>
         </Fallback>
     </BehaviorTree>

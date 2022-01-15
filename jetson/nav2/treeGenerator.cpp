@@ -27,7 +27,7 @@ void TreeGenerator::registerNodes(){
     utilNodes::registerNodes(factory);
     gateNodes::registerNodes(factory);
     searchNodes::registerNodes(factory);
-
+    driveNodes::registerNodes(factory);
 
     //vending machine registration TODO: delete this and replace with real tree
     using namespace VendingMachineNodes;

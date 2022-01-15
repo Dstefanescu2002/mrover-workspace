@@ -176,12 +176,12 @@ namespace gateNodes{
 
     void registerNodes( BT::BehaviorTreeFactory& factory ){
 
-        factory.registerSimpleAction( "isFirstGatePostLocKnown", std::bind(isFirstGatePostLocKnown) );
-        factory.registerSimpleAction( "genGateTraversalPath", std::bind(genGateTraversalPath) );
-        factory.registerSimpleAction( "isGateTraversalPoint", std::bind(isGateTraversalPoint) );
-        factory.registerSimpleAction( "hasGateTraversalPoints", std::bind(hasGateTraversalPoints) );
-        factory.registerSimpleAction( "verifyGateTraversal", std::bind(verifyGateTraversal) );
-        factory.registerSimpleAction( "genSecondPostSearchPattern", std::bind(genSecondPostSearchPattern) );
+        factory.registerSimpleAction( "IsFirstGatePostLocKnown", std::bind(isFirstGatePostLocKnown) );
+        factory.registerSimpleAction( "GenGateTraversalPath", std::bind(genGateTraversalPath) );
+        factory.registerSimpleAction( "IsGateTraversalPoint", std::bind(isGateTraversalPoint) );
+        factory.registerSimpleAction( "HasGateTraversalPoints", std::bind(hasGateTraversalPoints) );
+        factory.registerSimpleAction( "VerifyGateTraversal", std::bind(verifyGateTraversal) );
+        factory.registerSimpleAction( "GenSecondPostSearchPattern", std::bind(genSecondPostSearchPattern) );
 
     }
 

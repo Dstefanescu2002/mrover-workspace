@@ -83,18 +83,19 @@ namespace utilNodes{
         return BT::NodeStatus::SUCCESS;
     }
 
+    
+    
     void registerNodes(BT::BehaviorTreeFactory& factory){
-        factory.registerSimpleAction( "isOff", std::bind(isOff) );
-        factory.registerSimpleAction( "atCurrentWaypoint", std::bind(atCurrentWaypoint) );
-        factory.registerSimpleAction( "spinGimbal", std::bind(spinGimbal) );
-        factory.registerSimpleAction( "resetGimbalIndex", std::bind(resetGimbalIndex) );
-        factory.registerSimpleAction( "popCourse", std::bind(popCourse) );
-        factory.registerSimpleAction( "isDestinationPoint", std::bind(isDestinationPoint) );
-        factory.registerSimpleAction( "isARTagLeg", std::bind(isARTagLeg) );
-        factory.registerSimpleAction( "clearCourse", std::bind(clearCourse) );
-        factory.registerSimpleAction( "turnOff", std::bind(turnOff) );
-
-
+        factory.registerSimpleAction( "IsOff", std::bind(isOff) );
+        factory.registerSimpleAction( "AtCurrentWaypoint", std::bind(atCurrentWaypoint) );
+        factory.registerSimpleAction( "SpinGimbal", std::bind(spinGimbal) );
+        factory.registerSimpleAction( "ResetGimbalIndex", std::bind(resetGimbalIndex) );
+        factory.registerSimpleAction( "PopCourse", std::bind(popCourse) );
+        factory.registerSimpleAction( "IsDestinationPoint", std::bind(isDestinationPoint) );
+        factory.registerSimpleAction( "IsARTagLeg", std::bind(isARTagLeg) );
+        factory.registerSimpleAction( "ClearCourse", std::bind(clearCourse) );
+        factory.registerSimpleAction( "TurnOff", std::bind(turnOff) );
     }
 }
+
 
