@@ -1,10 +1,12 @@
 #include "utilityNodes.hpp"
+#include "utilities.hpp"
 #include "rover.hpp"
+
 namespace utilNodes{
 
     BT::NodeStatus isOff(){
 
-        if ( !gRover->autonState().is_auton ){
+        if ( !gRover->roverStatus().autonState().is_auton ){
             return BT::NodeStatus::SUCCESS;
         }
 
@@ -12,7 +14,7 @@ namespace utilNodes{
     }
 
     BT::NodeStatus atCurrentWaypoint(){
-        if ( estimateNoneuclid(gRover->odometry(),
+        if ( estimateNoneuclid(gRover->roverStatus().odometry(),
                                gRover->roverStatus().course().front().odom) < 1.0 ) { // TODO determine distance threshold
             return BT::NodeStatus::SUCCESS;
         }
@@ -21,12 +23,11 @@ namespace utilNodes{
 
     BT::NodeStatus spinGimbal(){
         // spins gimbal
-        // uses retry decoratory to spin the gimbal upto N times
         // Fails: if at the end of the gimbal angles trajectory
         // Succeeds: otherwise
-        bool at_desired_angle = gRover->sendGimbalSetpoint( gRover->gimbalAngles()[gRover->gimbalIndex()] );
+        gRover->sendGimbalSetpoint( gRover->gimbalAngles()[gRover->gimbalIndex()] );
 
-        if ( gRover->gimbalIndex() == (int)gRover->gimbalAngles().size()-1 ){
+        if ( gRover->gimbalIndex() == (int)gRover->gimbalAngles().size()-1){
             // at end of spin cycle - haven't seen target, give up
             gRover->gimbalIndex() = 0;
             return BT::NodeStatus::FAILURE;
@@ -82,18 +83,19 @@ namespace utilNodes{
         return BT::NodeStatus::SUCCESS;
     }
 
+    
+    
     void registerNodes(BT::BehaviorTreeFactory& factory){
-        factory.registerSimpleAction( "isOff", std::bind(isOff) );
-        factory.registerSimpleAction( "atCurrentWaypoint", std::bind(atCurrentWaypoint) );
-        factory.registerSimpleAction( "spinGimbal", std::bind(spinGimbal) );
-        factory.registerSimpleAction( "resetGimbalIndex", std::bind(resetGimbalIndex) );
-        factory.registerSimpleAction( "popCourse", std::bind(popCourse) );
-        factory.registerSimpleAction( "isDestinationPoint", std::bind(isDestinationPoint) );
-        factory.registerSimpleAction( "isARTagLeg", std::bind(isARTagLeg) );
-        factory.registerSimpleAction( "clearCourse", std::bind(clearCourse) );
-        factory.registerSimpleAction( "turnOff", std::bind(turnOff) );
-
-
+        factory.registerSimpleAction( "IsOff", std::bind(isOff) );
+        factory.registerSimpleAction( "AtCurrentWaypoint", std::bind(atCurrentWaypoint) );
+        factory.registerSimpleAction( "SpinGimbal", std::bind(spinGimbal) );
+        factory.registerSimpleAction( "ResetGimbalIndex", std::bind(resetGimbalIndex) );
+        factory.registerSimpleAction( "PopCourse", std::bind(popCourse) );
+        factory.registerSimpleAction( "IsDestinationPoint", std::bind(isDestinationPoint) );
+        factory.registerSimpleAction( "IsARTagLeg", std::bind(isARTagLeg) );
+        factory.registerSimpleAction( "ClearCourse", std::bind(clearCourse) );
+        factory.registerSimpleAction( "TurnOff", std::bind(turnOff) );
     }
 }
+
 

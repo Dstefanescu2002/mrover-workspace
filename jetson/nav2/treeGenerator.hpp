@@ -6,6 +6,7 @@
 #include "nodes/gateNodes.hpp"
 #include "nodes/searchNodes.hpp"
 #include "nodes/utilityNodes.hpp"
+#include "nodes/driveNodes.hpp"
 
 class TreeGenerator {
     private:

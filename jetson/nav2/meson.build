@@ -3,14 +3,15 @@ project('nav2', 'cpp', default_options : ['cpp_std=c++14'])
 liblcm = dependency('lcm')
 
 incdir = include_directories('include')
-nodes = include_directories('nodes')
+nodes = include_directories('nodes') 
 follower = include_directories('followers')
-planner = include_directories('planners')
+#planner = include_directories('planners')
 searchPattern = include_directories('searchPatterns')
 
 executable('jetson_nav2', 'main.cpp', 'treeGenerator.cpp',
             'nodes/searchNodes.cpp',
             'nodes/utilityNodes.cpp',
+            'nodes/driveNodes.cpp',
             'nodes/vendingMachineNodes.cpp',
             'searchPatterns/lawnmower.cpp',
             'searchPatterns/spiralIn.cpp',
@@ -58,5 +59,6 @@ executable('jetson_nav2', 'main.cpp', 'treeGenerator.cpp',
             'src/private/tinyxml2.h',
            dependencies : [liblcm],
            link_args : '-ldl',
-           include_directories : [incdir, nodes, follower, planner, searchPattern],
+           include_directories : [incdir, nodes, follower, searchPattern],
+           #, planner, 
            install : true)

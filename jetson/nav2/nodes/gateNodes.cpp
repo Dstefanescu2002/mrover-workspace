@@ -164,6 +164,8 @@ namespace gateNodes{
                 // we see the targets but they are not gate IDs
                 return BT::NodeStatus::FAILURE;
         }
+        return BT::NodeStatus::FAILURE; //double check logic
+        // warning: control reaches end of non-void function [-Wreturn-type]
     }
 
     BT::NodeStatus genSecondPostSearchPattern(){
@@ -174,12 +176,12 @@ namespace gateNodes{
 
     void registerNodes( BT::BehaviorTreeFactory& factory ){
 
-        factory.registerSimpleAction( "isFirstGatePostLocKnown", std::bind(isFirstGatePostLocKnown) );
-        factory.registerSimpleAction( "genGateTraversalPath", std::bind(genGateTraversalPath) );
-        factory.registerSimpleAction( "isGateTraversalPoint", std::bind(isGateTraversalPoint) );
-        factory.registerSimpleAction( "hasGateTraversalPoints", std::bind(hasGateTraversalPoints) );
-        factory.registerSimpleAction( "verifyGateTraversal", std::bind(verifyGateTraversal) );
-        factory.registerSimpleAction( "genSecondPostSearchPattern", std::bind(genSecondPostSearchPattern) );
+        factory.registerSimpleAction( "IsFirstGatePostLocKnown", std::bind(isFirstGatePostLocKnown) );
+        factory.registerSimpleAction( "GenGateTraversalPath", std::bind(genGateTraversalPath) );
+        factory.registerSimpleAction( "IsGateTraversalPoint", std::bind(isGateTraversalPoint) );
+        factory.registerSimpleAction( "HasGateTraversalPoints", std::bind(hasGateTraversalPoints) );
+        factory.registerSimpleAction( "VerifyGateTraversal", std::bind(verifyGateTraversal) );
+        factory.registerSimpleAction( "GenSecondPostSearchPattern", std::bind(genSecondPostSearchPattern) );
 
     }
 

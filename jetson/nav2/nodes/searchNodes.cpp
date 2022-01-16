@@ -69,12 +69,13 @@ namespace searchNodes{
 
 
     void registerNodes(BT::BehaviorTreeFactory& factory){
-        factory.registerSimpleCondition("isSearchPoint", std::bind(isSearchPoint));
-        factory.registerSimpleCondition("isTargetApproachPoint", std::bind(isTargetApproachPoint));
-        factory.registerSimpleCondition("hasTarget1", std::bind(hasTarget1));
-        factory.registerSimpleCondition("hasTarget2", std::bind(hasTarget2));
-        factory.registerSimpleCondition("populateFirstTarget", std::bind(populateFirstTarget));
-        factory.registerSimpleCondition("populateSecondTarget", std::bind(populateSecondTarget));
-        factory.registerSimpleCondition("putTargetAtFrontOfCourse", std::bind(putTargetAtFrontOfCourse));
+        factory.registerSimpleCondition("IsSearchPoint", std::bind(isSearchPoint));
+        factory.registerSimpleCondition("IsTargetApproachPoint", std::bind(isTargetApproachPoint));
+        factory.registerSimpleCondition("HasTarget1", std::bind(hasTarget1));
+        factory.registerSimpleCondition("HasTarget2", std::bind(hasTarget2));
+        factory.registerSimpleCondition("PopulateFirstTarget", std::bind(populateFirstTarget));
+        factory.registerSimpleCondition("PopulateSecondTarget", std::bind(populateSecondTarget));
+        factory.registerSimpleCondition("PutTargetAtFrontOfCourse", std::bind(putTargetAtFrontOfCourse));
+        factory.registerSimpleCondition("GenSearchPoints", std::bind(generateSearchPoints));
     }
 }
