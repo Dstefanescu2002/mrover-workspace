@@ -3,6 +3,7 @@
 #include "behaviortree_cpp_v3/bt_factory.h"
 #include "rover.hpp"
 #include "rover_msgs/Obstacle.hpp"
+#include "rover_msgs/NavStatus.hpp"
 #include "treeGenerator.hpp"
 using namespace rover_msgs;
 using namespace std;
@@ -159,6 +160,12 @@ int main()
     while (status == BT::NodeStatus::SUCCESS && (lcmObject.handle() == 0)){
         //TODO: map processing
         std::cout << "tick" << std::endl;
+        NavStatus nv;
+        nv.nav_state_name = "Root of Tree";
+        nv.completed_wps = 0;
+        nv.total_wps = 0;
+        const string& navStatusChannel = "/NavStatus";
+        mLcmObject.publish( navStatusChannel, &navStatus );
         status = tree.tickRoot();
     }
 
