@@ -165,7 +165,7 @@ int main()
         nv.completed_wps = 0;
         nv.total_wps = 0;
         const string& navStatusChannel = "/NavStatus";
-        mLcmObject.publish( navStatusChannel, &navStatus );
+        lcmObject.publish( navStatusChannel, &nv );
         status = tree.tickRoot();
     }
 
