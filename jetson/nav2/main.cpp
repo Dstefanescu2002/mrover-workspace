@@ -164,7 +164,7 @@ int main()
         nv.nav_state_name = "Root of Tree";
         nv.completed_wps = 0;
         nv.total_wps = 0;
-        const string& navStatusChannel = "/NavStatus";
+        const string& navStatusChannel = "/nav_status";
         lcmObject.publish( navStatusChannel, &nv );
         status = tree.tickRoot();
     }
