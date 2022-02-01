@@ -9,8 +9,50 @@
 // state to off.
 Rover::RoverStatus::RoverStatus()
 {
-    mAutonState.is_auton = false;
+    this->mAutonState.is_auton = false;
 } // RoverStatus()
+
+// Updates the auton state (on/off) of the rover's status.
+void Rover::RoverStatus::updateRoverStatus( AutonState autonState )
+{
+    Rover::RoverStatus::autonState() = autonState;
+} // updateRoverStatus( AutonState )
+
+// Updates the course of the rover's status if it has changed.
+void Rover::RoverStatus::updateRoverStatus( Destinations destinations )
+{
+    if( Rover::RoverStatus::destinations().hash != destinations.hash )
+    {
+        Rover::RoverStatus::destinations() = destinations;
+    }
+} // updateRoverStatus( Course )
+
+// Updates the obstacle information of the rover's status.
+void Rover::RoverStatus::updateRoverStatus( Obstacle obstacle )
+{
+    Rover::RoverStatus::obstacle() = obstacle;
+} // updateRoverStatus( Obstacle )
+
+// Updates the odometry information of the rover's status.
+void Rover::RoverStatus::updateRoverStatus( Odometry odometry )
+{
+    Rover::RoverStatus::odometry() = odometry;
+} // updateRoverStatus( Odometry )
+
+// Updates the target information of the rover's status.
+void Rover::RoverStatus::updateRoverStatus( TargetList targetList )
+{
+    Target target1 = targetList.targetList[0];
+    Target target2 = targetList.targetList[1];
+    Rover::RoverStatus::target() = target1;
+    Rover::RoverStatus::target2() = target2;
+} // updateRoverStatus( Target )
+
+// Updates the radio signal strength information of the rover's status.
+void Rover::RoverStatus::updateRoverStatus( RadioSignalStrength radioSignalStrength )
+{
+    radio() = radioSignalStrength;
+} // updateRoverStatus( RadioSignalStrength )
 
 
 // Gets a reference to the rover's destinations.

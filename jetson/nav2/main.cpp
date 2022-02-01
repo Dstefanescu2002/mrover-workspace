@@ -30,8 +30,7 @@ public:
         )
     {
         //TODO: fill this in with an actual implementation that would trigger the start of the behavior tree
-        //mStatus->updateRoverStatus( *autonState );
-
+        mStatus->updateRoverStatus( *autonState );
     }
 
     // Sends the Destinations lcm message to the state machine.
@@ -52,7 +51,7 @@ public:
         )
     {
         //TODO: set oobstacles in rover state
-        //mStatus->updateRoverStatus( *obstacle );
+        mStatus->updateRoverStatus( *obstacle );
     }
 
     // Sends the odometry lcm message to the state machine.
@@ -73,7 +72,7 @@ public:
         )
     {
         //TODO: update for rover status based config
-        //mStatus->updateRoverStatus( *targetListIn );
+        mStatus->updateRoverStatus( *targetListIn );
     }
 
     // Sends the radio lcm message to the state machine.
@@ -84,18 +83,7 @@ public:
         )
     {
         //TODO: update for rover status based config
-        //mStatus->updateRoverStatus( *signalIn );
-    }
-
-    // Updates Radio Repeater bool in state machine.
-    void repeaterDropComplete(
-        const lcm::ReceiveBuffer* receiveBuffer,
-        const string& channel,
-        const RepeaterDrop* completeIn
-        )
-    {
-        //TODO: updatte for rover status based config
-        //mStatus->updateRepeaterComplete( );
+        mStatus->updateRoverStatus( *signalIn );
     }
 
 private:
@@ -130,7 +118,7 @@ int main()
     roverConfig.Parse( config.c_str() );
     
     gRover = new Rover( roverConfig, lcmObject );
-    
+
     //initialize lcms
     LcmHandlers lcmHandlers( &(gRover->roverStatus()) );
     lcmObject.subscribe( "/auton", &LcmHandlers::autonState, &lcmHandlers );
@@ -138,7 +126,6 @@ int main()
     lcmObject.subscribe( "/obstacle", &LcmHandlers::obstacle, &lcmHandlers );
     lcmObject.subscribe( "/odometry", &LcmHandlers::odometry, &lcmHandlers );
     lcmObject.subscribe( "/radio", &LcmHandlers::radioSignalStrength, &lcmHandlers );
-    lcmObject.subscribe( "/rr_drop_complete", &LcmHandlers::repeaterDropComplete, &lcmHandlers );
     lcmObject.subscribe( "/target_list", &LcmHandlers::targetList, &lcmHandlers );
 
 

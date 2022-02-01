@@ -99,7 +99,6 @@ public:
     {
     public:
 
-
         RoverStatus();
 
         RoverStatus(
@@ -136,6 +135,23 @@ public:
         AutonState& autonState();
 
         Obstacle& obstacle();
+
+        // Rover update commands, previously in the state machine class
+        void updateRoverStatus( AutonState autonState );
+
+        void updateRoverStatus( Bearing bearing );
+
+        void updateRoverStatus( Destinations course );
+
+        void updateRoverStatus( Obstacle obstacle );
+
+        void updateRoverStatus( Odometry odometry );
+
+        void updateRoverStatus( TargetList targetList );
+
+        void updateRoverStatus( RadioSignalStrength radioSignalStrength );
+
+        void updateRepeaterComplete( );
 
     private:
         // The rover's current auton state.
