@@ -30,6 +30,7 @@ public:
         )
     {
         //TODO: fill this in with an actual implementation that would trigger the start of the behavior tree
+        cout << "Auton\n";
         mStatus->updateRoverStatus( *autonState );
     }
 
@@ -40,7 +41,9 @@ public:
         const Destinations* dests
         )
     {
-        mStatus->destinations() = *dests;
+        cout << "Dests\n";
+        exit(0);
+        mStatus->updateRoverStatus(*dests);
     }
 
     // Sends the obstacle lcm message to the state machine.
