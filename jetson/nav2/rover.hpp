@@ -137,11 +137,12 @@ public:
         Obstacle& obstacle();
 
         // Rover update commands, previously in the state machine class
+        // TODO: Remove some of these because they are no longer called
         void updateRoverStatus( AutonState autonState );
 
         void updateRoverStatus( Bearing bearing );
 
-        void updateRoverStatus( Destinations course );
+        void updateRoverStatus( Destinations destinations );
 
         void updateRoverStatus( Obstacle obstacle );
 
