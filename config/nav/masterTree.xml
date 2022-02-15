@@ -2,6 +2,7 @@
     <BehaviorTree ID="MainTree">
         <Fallback>
             <IsOff/>
+            <EmptyCourse/>
             <!--Auton On Tree-->
             <Sequence>
                 <!--Drive Tree-->
@@ -10,6 +11,7 @@
                     <DriveToPoint/>
                 </Fallback>
                 <!--Waypoint Decision Tree (Manages the waypoint course)-->
+                <!--Commenting out the entire right side of the tree-->
                 <Fallback>
                     <!-- Search Point -->
                     <Sequence>
