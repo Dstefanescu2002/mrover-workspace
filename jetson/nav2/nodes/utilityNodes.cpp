@@ -4,20 +4,29 @@
 
 namespace utilNodes{
 
-    BT::NodeStatus isOff(){
-
-        if ( !gRover->roverStatus().autonState().is_auton ){
+    BT::NodeStatus emptyCourse() {
+        if (gRover->roverStatus().course().empty()) {
+            cout << "Final Node: emptyCourse\n";
             return BT::NodeStatus::SUCCESS;
         }
+        return BT::NodeStatus::FAILURE;
+    }
 
+    BT::NodeStatus isOff(){
+        if ( !gRover->roverStatus().autonState().is_auton ){
+            cout << "Final Node: isOff\n";
+            return BT::NodeStatus::SUCCESS;
+        }
         return BT::NodeStatus::FAILURE;
     }
 
     BT::NodeStatus atCurrentWaypoint(){
-        if ( estimateNoneuclid(gRover->roverStatus().odometry(),
+        cout << gRover->roverStatus().course().empty() << '\n';
+        if ( gRover->roverStatus().course().empty() || estimateNoneuclid(gRover->roverStatus().odometry(),
                                gRover->roverStatus().course().front().odom) < 1.0 ) { // TODO determine distance threshold
             return BT::NodeStatus::SUCCESS;
         }
+        cout << "Final Node: AtCurrentWaypoint\n";
         return BT::NodeStatus::FAILURE;
     }
 
@@ -87,6 +96,7 @@ namespace utilNodes{
     
     void registerNodes(BT::BehaviorTreeFactory& factory){
         factory.registerSimpleAction( "IsOff", std::bind(isOff) );
+        factory.registerSimpleAction( "EmptyCourse", std::bind(emptyCourse) );
         factory.registerSimpleAction( "AtCurrentWaypoint", std::bind(atCurrentWaypoint) );
         factory.registerSimpleAction( "SpinGimbal", std::bind(spinGimbal) );
         factory.registerSimpleAction( "ResetGimbalIndex", std::bind(resetGimbalIndex) );

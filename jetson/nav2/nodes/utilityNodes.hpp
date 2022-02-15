@@ -6,6 +6,8 @@ namespace utilNodes {
 
     BT::NodeStatus isOff();
 
+    BT::NodeStatus emptyCourse();
+
     BT::NodeStatus atCurrentWaypoint();
 
     // TODO we have to flesh this out much more - where do we use? Gate nodes, search nodes
