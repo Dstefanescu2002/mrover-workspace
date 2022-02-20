@@ -29,6 +29,14 @@ def generateEquidistantSpiralSearchPoints(radius, distance, coils, rotation):
         theta += distance / away
     return coordinates
 
+def generateSquareSpiral (points, distance):
+    directions = [(1,0), (0,1), (-1,0), (0,-1)]
+    coordinates = [(0,0)]
+    for i in range(0,points):
+        coordinates.append( (coordinates[-1][0]+distance*directions[i%4][0], coordinates[-1][1]+distance*directions[i%4][1]) )
+        distance += 1
+    return coordinates
+
 def showCoords(coordinates):
     x_coords = [i[0] for i in coordinates]
     y_coords = [i[1] for i in coordinates]
@@ -40,7 +48,7 @@ def cart2pol(x, y):
     phi = np.arctan2(y, x)
     return(rho, phi)
 
-print("\n-----Search types-----\nRadially Equidistant Spiral: 0\nPoint Equidistant Spiral: 1")
+print("\n-----Search types-----\nRadially Equidistant Spiral: 0\nPoint Equidistant Spiral: 1\nSquare Spiral: 2\n")
 search_type = input("Select a search type: ")
 if search_type == '0': # Point Equidistant Spiral
     # generateSpiralSearchPoints 
@@ -50,6 +58,8 @@ elif search_type == '1': # Radially Equidistant Spiral
     # generateSpiralSearchPoints 
     #           (Radius of spiral, Distance between points, Number of coils, Rotation from start)
     coords = generateEquidistantSpiralSearchPoints(20, 1.2, 10, 90)
+elif search_type == '2':
+    coords = generateSquareSpiral(20, 1)
 else:
     print ("Not a valid type")
     exit(1)
