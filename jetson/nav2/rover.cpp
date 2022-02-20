@@ -24,6 +24,9 @@ void Rover::RoverStatus::updateRoverStatus( Destinations destinations )
     if( Rover::RoverStatus::destinations().hash != destinations.hash )
     {
         Rover::RoverStatus::destinations() = destinations;
+        for (int i = 0; i < destinations.num_waypoints; ++i) {
+            Rover::RoverStatus::course().push_back(destinations.waypoints[i]);
+        }
     }
 } // updateRoverStatus( Course )
 
@@ -257,11 +260,12 @@ void Rover::stop()
     publishJoystick( 0, 0, false );
 } // stop()
 
+
 // Checks if the rover should be updated based on what information in
 // the rover's status has changed. Returns true if the rover was
 // updated, false otherwise.
-// TODO: unconditionally update everything. When abstracting search class
-// we got rid of NavStates TurnToTarget and DriveToTarget (oops) fix this soon :P
+// TODO: Remove this function if we don't run into any problems without it.
+// It is very out dated, so if used we have to remake it
 bool Rover::updateRover( RoverStatus newRoverStatus )
 {
     // Rover currently on.
