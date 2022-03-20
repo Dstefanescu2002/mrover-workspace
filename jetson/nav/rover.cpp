@@ -92,6 +92,11 @@ int& Rover::RoverStatus::getRightMisses()
     return countRightMisses;
 }
 
+int& Rover::RoverStatus::getConcurrentTargets()
+{
+    return concurrentTargets;
+}
+
 // Assignment operator for the rover status object. Does a "deep" copy
 // where necessary.
 Rover::RoverStatus& Rover::RoverStatus::operator=( Rover::RoverStatus& newRoverStatus )
@@ -265,9 +270,21 @@ bool Rover::updateRover( RoverStatus newRoverStatus )
             mRoverStatus.leftTarget() = newRoverStatus.leftTarget();
             mRoverStatus.rightTarget() = newRoverStatus.rightTarget();
 
-            // Cache Left Target if we had detected one
-            if( mRoverStatus.leftTarget().distance != mRoverConfig[ "navThresholds" ][ "noTargetDist" ].GetDouble() ) 
+            // Increment concurrent targets found if another is seen, if not reset it
+            if ( mRoverStatus.leftTarget().distance != mRoverConfig[ "navThresholds" ][ "noTargetDist" ].GetDouble() ){
+                mRoverStatus.getConcurrentTargets()++;
+            }
+            else 
+            { 
+                mRoverStatus.getConcurrentTargets() = 0;
+                mRoverStatus.getLeftMisses()++;
+                mRoverStatus.getRightMisses()++; // need to increment since we don't see both
+            }
+
+            // Cache Left Target if we detected three in a row
+            if( mRoverStatus.getConcurrentTargets() == mRoverConfig[ "navThresholds" ][ "concurrentTargetsToCache" ].GetInt() ) 
             {
+                mRoverStatus.getConcurrentTargets() = 0;
                 mRoverStatus.leftCacheTarget() = mRoverStatus.leftTarget();
                 mRoverStatus.getLeftMisses() = 0;
 
@@ -282,11 +299,6 @@ bool Rover::updateRover( RoverStatus newRoverStatus )
                 {
                     mRoverStatus.getRightMisses()++;
                 }
-            }
-            else 
-            { 
-                mRoverStatus.getLeftMisses()++;
-                mRoverStatus.getRightMisses()++; // need to increment since we don't see both
             }
 
             // Check if we need to reset left cache

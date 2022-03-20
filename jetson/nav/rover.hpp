@@ -119,6 +119,8 @@ public:
 
         int& getRightMisses();
 
+        int& getConcurrentTargets();
+
         RoverStatus& operator=( RoverStatus& newRoverStatus );
 
     private:
@@ -161,6 +163,9 @@ public:
         int countLeftMisses = 0;
 
         int countRightMisses = 0;
+
+        // Count of concurrent targets seen
+        int concurrentTargets = 0;
     };
 
     Rover( const rapidjson::Document& config, lcm::LCM& lcm_in );
