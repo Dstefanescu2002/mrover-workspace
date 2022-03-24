@@ -14,4 +14,12 @@ output.log
 base_station/gui/src/static/map
 /core.*
 jetson/test**
+<<<<<<< HEAD
 beaglebone/test**
+=======
+<<<<<<< HEAD
+beaglebone/test**
+=======
+beaglebone/test**
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)

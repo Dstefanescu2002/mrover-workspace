@@ -21,5 +21,13 @@
       - libcairo2-dev
       - libgirepository1.0-dev
       - gfortran
+<<<<<<< HEAD
       - xdotool
+=======
+<<<<<<< HEAD
+      - libeigen3-dev
+=======
+      - xdotool
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
     state: present

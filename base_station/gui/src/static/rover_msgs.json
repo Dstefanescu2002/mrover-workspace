@@ -267,6 +267,54 @@
             "new_ack_id"
         ]
     ],
+<<<<<<< HEAD
+    "IMUData": [
+=======
+<<<<<<< HEAD
+    "IMU": [
+>>>>>>> 52262418 (Merged with new branch:)
+        [
+            "double",
+            "accel_x_g"
+        ],
+        [
+            "double",
+            "accel_y_g"
+        ],
+        [
+            "double",
+            "accel_z_g"
+        ],
+        [
+            "double",
+            "gyro_x_dps"
+        ],
+        [
+            "double",
+            "gyro_y_dps"
+        ],
+        [
+            "double",
+            "gyro_z_dps"
+        ],
+        [
+            "double",
+            "mag_x_uT"
+        ],
+        [
+            "double",
+            "mag_y_uT"
+        ],
+        [
+            "double",
+            "mag_z_uT"
+        ],
+        [
+            "double",
+<<<<<<< HEAD
+=======
+            "bearing"
+=======
     "IMUData": [
         [
             "double",
@@ -306,6 +354,7 @@
         ],
         [
             "double",
+>>>>>>> 52262418 (Merged with new branch:)
             "roll_rad"
         ],
         [
@@ -335,6 +384,10 @@
         [
             "double",
             "bearing_deg"
+<<<<<<< HEAD
+=======
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
         ]
     ],
     "IkArmControl": [
@@ -447,6 +500,19 @@
     ],
     "NavStatus": [
         [
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            ""
+        ],
+        [
+            "int8_t",
+            "nav_state"
+        ],
+        [
+=======
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
             "string",
             "nav_state_name"
         ],
@@ -456,7 +522,27 @@
         ],
         [
             "int32_t",
+<<<<<<< HEAD
             "total_wps"
+=======
+<<<<<<< HEAD
+            "missed_wps"
+        ],
+        [
+            "int32_t",
+            "total_wps"
+        ],
+        [
+            "int32_t",
+            "found_tbs"
+        ],
+        [
+            "int32_t",
+            "total_tbs"
+=======
+            "total_wps"
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
         ]
     ],
     "Obstacle": [
@@ -589,6 +675,12 @@
             "depths[numDepths]"
         ]
     ],
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    "RepeaterDrop": [],
+=======
+>>>>>>> 52262418 (Merged with new branch:)
     "RadioSignalStrength": [
         [
             "float",
@@ -601,6 +693,10 @@
             "reverse"
         ]
     ],
+<<<<<<< HEAD
+=======
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
     "RGB": [
         [
             "string",
@@ -1028,7 +1124,15 @@
         "Heartbeat",
         "IkArmControl",
         "IkEnabled",
+<<<<<<< HEAD
         "IMUData",
+=======
+<<<<<<< HEAD
+        "IMU",
+=======
+        "IMUData",
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
         "Joystick",
         "KillSwitch",
         "LockJointE",

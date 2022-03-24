@@ -42,7 +42,15 @@ public:
 
     void updateObstacleDistance( double distance );
 
+<<<<<<< HEAD
     void updateObstacleElements( double bearing, double rightBearing, double distance );
+=======
+<<<<<<< HEAD
+    void updateObstacleElements( double bearing, double distance );
+=======
+    void updateObstacleElements( double bearing, double rightBearing, double distance );
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
 
     void setSearcher(SearchType type, Rover* rover, const rapidjson::Document& roverConfig );
 

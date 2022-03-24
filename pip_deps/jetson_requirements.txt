@@ -1,2 +1,11 @@
 numpy==1.16.2
+<<<<<<< HEAD
 odrive==0.5.4
+=======
+<<<<<<< HEAD
+scipy==1.5.4
+odrive==0.5.1
+=======
+odrive==0.5.4
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)

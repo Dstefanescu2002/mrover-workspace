@@ -235,8 +235,18 @@ void StateMachine::updateRoverStatus( TargetList targetList )
 {
     Target target = targetList.targetList[0];
     Target target2 = targetList.targetList[1];
+<<<<<<< HEAD
     mNewRoverStatus.leftTarget() = target;
     mNewRoverStatus.rightTarget() = target2;
+=======
+<<<<<<< HEAD
+    mNewRoverStatus.target() = target;
+    mNewRoverStatus.target2() = target2;
+=======
+    mNewRoverStatus.leftTarget() = target;
+    mNewRoverStatus.rightTarget() = target2;
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
 } // updateRoverStatus( Target )
 
 // Return true if we want to execute a loop in the state machine, false
@@ -245,6 +255,14 @@ bool StateMachine::isRoverReady() const
 {
     return mStateChanged || // internal data has changed
            mRover->updateRover( mNewRoverStatus ) || // external data has changed
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+           mRover->roverStatus().currentState() == NavState::SearchSpinWait || // continue even if no data has changed
+           mRover->roverStatus().currentState() == NavState::TurnedToTargetWait || // continue even if no data has changed
+=======
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
            mRover->roverStatus().currentState() == NavState::GateSpinWait;
 
 } // isRoverReady()

@@ -67,6 +67,11 @@ Target& Rover::RoverStatus::rightTarget()
     return mTargetRight;
 } // rightTarget()
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 52262418 (Merged with new branch:)
 Target& Rover::RoverStatus::leftCacheTarget()
 {
     return mCTargetLeft;
@@ -77,6 +82,7 @@ Target& Rover::RoverStatus::rightCacheTarget()
     return mCTargetRight;
 } // rightCacheTarget()
 
+>>>>>>> spg-auton-integration-copy
 unsigned Rover::RoverStatus::getPathTargets()
 {
   return mPathTargets;
@@ -124,12 +130,23 @@ Rover::RoverStatus& Rover::RoverStatus::operator=( Rover::RoverStatus& newRoverS
     }
     mObstacle = newRoverStatus.obstacle();
     mOdometry = newRoverStatus.odometry();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    mTarget1 = newRoverStatus.target();
+    mTarget2 = newRoverStatus.target2();
+=======
+>>>>>>> 52262418 (Merged with new branch:)
     mTargetLeft = newRoverStatus.leftTarget();
     mTargetRight = newRoverStatus.rightTarget();
     mCTargetLeft = newRoverStatus.leftCacheTarget();
     mCTargetRight = newRoverStatus.rightCacheTarget();
     countLeftMisses = newRoverStatus.getLeftMisses();
     countRightMisses = newRoverStatus.getRightMisses();
+<<<<<<< HEAD
+=======
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
     return *this;
 } // operator=
 
@@ -272,6 +289,12 @@ bool Rover::updateRover( RoverStatus newRoverStatus )
         {
             mRoverStatus.obstacle() = newRoverStatus.obstacle();
             mRoverStatus.odometry() = newRoverStatus.odometry();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+            mRoverStatus.target() = newRoverStatus.target();
+=======
+>>>>>>> 52262418 (Merged with new branch:)
             mRoverStatus.leftTarget() = newRoverStatus.leftTarget();
             mRoverStatus.rightTarget() = newRoverStatus.rightTarget();
 
@@ -334,6 +357,10 @@ bool Rover::updateRover( RoverStatus newRoverStatus )
                 mRoverStatus.rightCacheTarget() = {-1, 0, 0};
             }
             
+<<<<<<< HEAD
+=======
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
             return true;
         }
         return false;

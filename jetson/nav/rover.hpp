@@ -52,10 +52,21 @@ enum class NavState
     GateTurnToCentPoint = 44,
     GateDriveToCentPoint = 45,
     GateFace = 46,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    GateShimmy = 47,
+    GateDriveThrough = 48,
+=======
+>>>>>>> 52262418 (Merged with new branch:)
     GateDriveThrough = 47,
     GateTurnToFarPost = 48,
     GateDriveToFarPost = 49,
     GateTurnToGateCenter = 50,
+<<<<<<< HEAD
+=======
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
 
     // Unknown State
     Unknown = 255
@@ -107,11 +118,21 @@ public:
         Target& leftTarget();
 
         Target& rightTarget();
+<<<<<<< HEAD
 
         Target& leftCacheTarget();
         
         Target& rightCacheTarget();
+=======
+>>>>>>> 52262418 (Merged with new branch:)
 
+<<<<<<< HEAD
+=======
+        Target& leftCacheTarget();
+        
+        Target& rightCacheTarget();
+
+>>>>>>> spg-auton-integration-copy
         unsigned getPathTargets();
 
         int& getLeftMisses();
@@ -154,9 +175,17 @@ public:
 
         // Cached Target information
         Target mCTargetLeft;
+<<<<<<< HEAD
 
         Target mCTargetRight;
+=======
+>>>>>>> 52262418 (Merged with new branch:)
 
+<<<<<<< HEAD
+=======
+        Target mCTargetRight;
+
+>>>>>>> spg-auton-integration-copy
         // Total targets to seach for in the course
         unsigned mPathTargets;
 

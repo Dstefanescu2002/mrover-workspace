@@ -6,7 +6,15 @@ from rover_common.aiohelper import run_coroutines
 from rover_msgs import (Joystick, DriveVelCmd, KillSwitch,
                         Xbox, Temperature, RAOpenLoopCmd,
                         SAOpenLoopCmd, GimbalCmd, HandCmd,
+<<<<<<< HEAD
                         Keyboard, FootCmd, ArmControlState, ReverseDrive)
+=======
+<<<<<<< HEAD
+                        Keyboard, FootCmd, ArmControlState)
+=======
+                        Keyboard, FootCmd, ArmControlState, ReverseDrive)
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
 
 
 class Toggle:
@@ -138,6 +146,11 @@ def drive_control_callback(channel, msg):
         lcm_.publish('/drive_vel_cmd', new_motor.encode())
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 52262418 (Merged with new branch:)
 def autonomous_callback(channel, msg):
     global auton_reverse
 
@@ -162,6 +175,10 @@ def auton_reverse_callback(channel, msg):
     auton_reverse = ReverseDrive.decode(msg).reverse
 
 
+<<<<<<< HEAD
+=======
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
 def send_zero_arm_command():
     openloop_msg = RAOpenLoopCmd()
     openloop_msg.throttle = [0, 0, 0, 0, 0, 0]
@@ -205,6 +222,25 @@ def ra_control_callback(channel, msg):
     lcm_.publish('/hand_openloop_cmd', hand_msg.encode())
 
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+def autonomous_callback(channel, msg):
+    input_data = Joystick.decode(msg)
+    new_motor = DriveVelCmd()
+
+    joystick_math(new_motor, input_data.forward_back, input_data.left_right)
+
+    temp = new_motor.left
+    new_motor.left = new_motor.right
+    new_motor.right = temp
+
+    lcm_.publish('/drive_vel_cmd', new_motor.encode())
+
+
+=======
+>>>>>>> spg-auton-integration-copy
+>>>>>>> 52262418 (Merged with new branch:)
 async def transmit_temperature():
     while True:
         new_temps = Temperature()
